@@ -38,7 +38,7 @@ module RicohAPI
       end
 
       # GET /media/{id}/meta
-      def inspect(media_id)
+      def meta(media_id)
         handle_response do
           token.get endpoint_for("media/#{media_id}/meta")
         end
