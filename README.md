@@ -1,4 +1,4 @@
-# Ricoh Media Storage for Ruby
+# Ricoh Media Storage API Client for Ruby
 
 Ricoh Media Storage API Client.
 

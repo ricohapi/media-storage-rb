@@ -1,7 +1,7 @@
 # Copyright (c) 2016 Ricoh Company, Ltd. All Rights Reserved.
 # See LICENSE for more information
 
-require 'ricohapi/oauth'
+require 'ricohapi/auth'
 require 'ricohapi/mstorage/version'
 
 module RicohAPI

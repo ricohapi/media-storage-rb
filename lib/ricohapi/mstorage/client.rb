@@ -10,7 +10,7 @@ module RicohAPI
       class Unauthorized < Error; end
 
       def initialize(access_token)
-        self.token = OAuth::AccessToken.new access_token
+        self.token = Auth::AccessToken.new access_token
       end
 
       # GET /media
