@@ -42,7 +42,7 @@ mstorage.list after: '<cursor-id>'
 mstorage.info '<media-id>'
 
 # GET /v1/media/{media-id}/meta
-mstorage.inspect '<media-id>'
+mstorage.meta '<media-id>'
 
 # GET /v1/media/{media-id}/content
 mstorage.download '<media-id>'
