@@ -12,4 +12,3 @@ module RicohAPI
 end
 
 require 'ricohapi/mstorage/client'
-require 'ricohapi/mstorage/debugger/request_filter'
