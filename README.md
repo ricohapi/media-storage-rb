@@ -22,6 +22,10 @@ Or install it yourself as:
 
 You can find [a working rails sample app using Ricoh Media Storage API](https://github.com/ricohapi/media-storage-sample-app).
 
+### Obtaining OAuth Access Token for Media Storage API
+
+To obtain OAuth tokens, you can use [ricohapi-auth gem](https://github.com/ricohapi/auth-rb).
+
 ### Media Storage API Client
 
 ```ruby
