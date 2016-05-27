@@ -1,10 +1,10 @@
 require 'webmock/rspec'
 
 module WebmockHelper
-  def mock_request(method, endpoint, response_path, options = {})
+  def mock_request(method, path, response_path, options = {})
     stub_request(
       method,
-      endpoint
+      endpoint_for(path)
     ).with(
       request_for(method, options)
     ).to_return(
@@ -14,7 +14,7 @@ module WebmockHelper
       response = yield
       a_request(
         method,
-        endpoint
+        endpoint_for(path)
       ).with(
         request_for(method, options)
       ).should have_been_made.once
@@ -23,6 +23,10 @@ module WebmockHelper
   end
 
   private
+
+  def endpoint_for(path)
+    File.join RicohAPI::MStorage::BASE_URL, path
+  end
 
   def request_for(method, options = {})
     request = {}
@@ -56,7 +60,7 @@ module WebmockHelper
       response_path
     else
       File.join(
-        __dir__, 'mock_response', "#{response_path}.json"
+        __dir__, 'mock_response', response_path
       )
     end
     unless File.exist? _response_file_path_

@@ -16,7 +16,7 @@ module RicohAPI
       # GET /media
       def list(params = {})
         params.reject! do |k, v|
-          !['after', 'before', 'limit'].include? k
+          ![:after, :before, :limit].include? k.to_sym
         end
         handle_response do
           token.get endpoint_for('media'), params
