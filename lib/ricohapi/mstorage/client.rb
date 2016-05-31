@@ -10,13 +10,13 @@ module RicohAPI
       class Unauthorized < Error; end
 
       def initialize(access_token)
-        self.token = OAuth::AccessToken.new access_token
+        self.token = Auth::AccessToken.new access_token
       end
 
       # GET /media
       def list(params = {})
         params.reject! do |k, v|
-          !['after', 'before', 'limit'].include? k
+          ![:after, :before, :limit].include? k.to_sym
         end
         handle_response do
           token.get endpoint_for('media'), params
@@ -38,7 +38,7 @@ module RicohAPI
       end
 
       # GET /media/{id}/meta
-      def inspect(media_id)
+      def meta(media_id)
         handle_response do
           token.get endpoint_for("media/#{media_id}/meta")
         end

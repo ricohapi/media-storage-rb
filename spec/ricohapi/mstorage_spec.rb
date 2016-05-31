@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe RicohAPI::MStorage do
   it 'has a version number' do
-    expect(RicohAPI::MStorage::VERSION).not_to be nil
+    RicohAPI::MStorage::VERSION.should_not be nil
   end
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+  it 'knows necessary endponints and scopes' do
+    RicohAPI::MStorage::BASE_URL.should_not be nil
+    RicohAPI::MStorage::SCOPE.should_not be nil
   end
 end

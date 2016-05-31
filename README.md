@@ -1,8 +1,6 @@
-# Ricoh Media Storage for Ruby
+# Ricoh Media Storage API Client for Ruby
 
 Ricoh Media Storage API Client.
-
-Currently, this gem is also including Ricoh OAuth Client.
 
 ## Installation
 
@@ -24,17 +22,9 @@ Or install it yourself as:
 
 You can find [a working rails sample app using Ricoh Media Storage API](https://github.com/ricohapi/media-storage-sample-app).
 
-### Ricoh OAuth Client
+### Obtaining Access Token for Media Storage API
 
-```ruby
-client = RicohAPI::OAuth::Client.new(
-  '<your-client-id>',
-  '<your-client-secret>'
-)
-client.resource_owner_credentials = '<your-user-id>', '<your-password>'
-api_session = client.api_token_for! RicohAPI::MStorage::SCOPE
-puts api_session.access_token, api_session.refresh_token
-```
+To obtain access tokens, you can use [ricohapi-auth gem](https://github.com/ricohapi/auth-rb).
 
 ### Media Storage API Client
 
@@ -52,7 +42,7 @@ mstorage.list after: '<cursor-id>'
 mstorage.info '<media-id>'
 
 # GET /v1/media/{media-id}/meta
-mstorage.inspect '<media-id>'
+mstorage.meta '<media-id>'
 
 # GET /v1/media/{media-id}/content
 mstorage.download '<media-id>'

@@ -1,0 +1,12 @@
+{
+  "media": [{
+    "id": "7818391d-0cb7-4a87-9a6d-3d0f9a823a3c"
+  }, {
+    "id": "663c9f56-75b1-453b-abd5-051bc3c3abc0"
+  }, {
+    "id": "a578648f-bab8-4e72-bae7-b650806bfb9c"
+  }],
+  "paging": {
+    "previous": "http://mss.ricohapi.com/v1/media?before=7818391d-0cb7-4a87-9a6d-3d0f9a823a3c\u0026limit=10"
+  }
+}
