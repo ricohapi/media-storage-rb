@@ -4,5 +4,6 @@
     "ImageSize": "160x160",
     "ImageWidth": "160.0"
   },
-  "gpano": {}
+  "gpano": {},
+  "user": {"key1": "value1"}
 }

@@ -1,0 +1,13 @@
+{
+  "FullPanoHeightPixels":"2688",
+  "CroppedAreaTopPixels":"0",
+  "CroppedAreaImageHeightPixels":"2688",
+  "PoseHeadingDegrees":"225.0",
+  "PosePitchDegrees":"7.0",
+  "FullPanoWidthPixels":"5376",
+  "UsePanoramaViewer":"True",
+  "ProjectionType":"equirectangular",
+  "PoseRollDegrees":"2.6",
+  "CroppedAreaImageWidthPixels":"5376",
+  "CroppedAreaLeftPixels":"0"
+}

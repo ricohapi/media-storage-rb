@@ -1,0 +1,11 @@
+{
+  "media":[
+    {
+      "id":"71234bad-234a-4537-8e11-54c82e232345"
+    }
+  ],
+  "paging":{
+    "next":"https://mss.ricohapi.com/v1/media/?after=71234bad-234a-4537-8e11-54c82e567345\u0026limit=10",
+    "previous":"https://mss.ricohapi.com/v1/media?before=71234bad-234a-4537-8e11-521c2e232345\u0026limit=10"
+  }
+}

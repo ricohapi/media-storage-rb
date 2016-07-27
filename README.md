@@ -2,6 +2,15 @@
 
 Ricoh Media Storage API Client.
 
+## Requirements
+
+You need
+
+    Ricoh API Client Credentials (client_id & client_secret)
+    Ricoh ID (user_id & password)
+
+If you don't have them, please register yourself and your client from [THETA Developers Website](http://contest.theta360.com/).
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -14,7 +23,7 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Or execute the following line to install the gem without bundler.
 
     $ gem install ricohapi-mstorage
 
@@ -22,39 +31,121 @@ Or install it yourself as:
 
 You can find [a working rails sample app using Ricoh Media Storage API](https://github.com/ricohapi/media-storage-sample-app).
 
-### Obtaining Access Token for Media Storage API
+## SDK API
+Add `require 'ricohapi/mstorage'` to use the APIs below.
 
-To obtain access tokens, you can use [ricohapi-auth gem](https://github.com/ricohapi/auth-rb).
-
-### Media Storage API Client
+### Obtain an access token
 
 ```ruby
-mstorage = RicohAPI::MStorage::Client.new(
-  '<your-access-token>'
-)
+client = RicohAPI::Auth::Client.new '<your-client-id>', '<your-client-secret>'
+client.resource_owner_credentials = '<your-user-id>', '<your-password>'
+api_session = client.api_token_for! RicohAPI::MStorage::SCOPE
+access_token = api_session.access_token
+```
 
-# GET /v1/media
+### Constructor
+
+```ruby
+mstorage = RicohAPI::MStorage::Client.new client
+```
+
+or
+
+```ruby
+mstorage = RicohAPI::MStorage::Client.new access_token
+```
+
+### Upload
+
+```ruby
+mstorage.upload content: file
+```
+
+### Download
+
+```ruby
+mstorage.download '<media-id>'
+```
+
+### List media ids
+* Without options
+You'll get a default list if you do not set any parameters.
+```ruby
 mstorage.list
+```
+
+* With options
+
+You can also use listing options. The available options are `limit`, `after` and `before`.
+```ruby
 mstorage.list limit: 25
 mstorage.list after: '<cursor-id>'
+```
 
-# GET /v1/media/{media-id}
-mstorage.info '<media-id>'
+* Search
 
-# GET /v1/media/{media-id}/meta
-mstorage.meta '<media-id>'
+Also, you can get a list searched by user metadata.
+```ruby
+filter = {'meta.user.<key1>' => '<value1>', 'meta.user.<key2>' => '<value2>'}
+mstorage.list limit: 25, after: '<cursor-id>', filter: filter
+```
 
-# GET /v1/media/{media-id}/content
-mstorage.download '<media-id>'
+### Delete
 
-# POST /v1/media (multipart)
-mstorage.upload content: file
-
-# DELETE /v1/media/{media-id}
+```ruby
 mstorage.delete '<media-id>'
 ```
 
-## License
+### Get media information
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+```ruby
+mstorage.info '<media-id>'
+```
 
+### Attach media metadata
+You can define your original metadata as a 'user metadata'.
+Existing metadata value for the same key will be overwritten. Up to 10 user metadata can be attached to a media data.
+
+```ruby
+mstorage.add_meta '<media-id>', {'user.<key1>' => '<value1>', 'user.<key2>' => '<value2>'}
+```
+
+### Get media metadata
+* All
+```ruby
+mstorage.meta '<media-id>'
+```
+
+* Exif
+```ruby
+mstorage.meta '<media-id>', 'exif'
+```
+
+* Google Photo Sphere XMP
+```ruby
+mstorage.meta '<media-id>', 'gpano'
+```
+
+* User metadata (all)
+```ruby
+mstorage.meta '<media-id>', 'user'
+```
+
+* User metadata (with a key)
+```ruby
+mstorage.meta '<media-id>', 'user.<key>'
+```
+
+### Delete media metadata
+* User metadata (all)
+```ruby
+mstorage.remove_meta '<media-id>', 'user'
+```
+
+* User metadata (with a key)
+```ruby
+mstorage.remove_meta '<media-id>', 'user.<key>'
+```
+
+## References
+* [Media Storage REST API](https://github.com/ricohapi/media-storage-rest/blob/master/media.md)
